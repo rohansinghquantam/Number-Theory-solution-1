@@ -1,0 +1,36 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+    long long int n,a,b;
+    cin>>n;
+    cin>>a;
+    cin>>b;
+    long long int s=0;
+    long long int m;
+    long long int k=0;
+    vector<int> v;
+    bool flag=0;
+    while(n!=0){
+        m=n%10;
+        v.push_back(m);  // converting the number in the form of a vector
+        n/=10;
+    }
+    reverse(v.begin(),v.end());
+    long long int i;
+    for(i=0;i<v.size();i++){
+        s=s*10+v[i];     // find the first nth number which is divisible by a
+        k=0;
+        if(s%a==0){
+            for(int j=i+1;j<v.size();j++){
+                k=k*10+v[j];   // finding whether the remaining numbers are divisible by b or not if not continue 
+                               // the formation of the nth number and check for divisibility of a again
+            }
+            if(k%b==0){
+                flag=1;
+                cout<<s<<" "<<k<<endl;
+            }
+        }
+    }
+        if(flag==0)
+        cout<<"NOT POSSIBLE";
+}
